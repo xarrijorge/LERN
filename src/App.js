@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import './App.css'
+import Report from './components/Report'
+import Map from './components/map'
 
+const reports = [
+  {
+    title: '12 Years Old Girl Raped in Ganta',
+    county: 'Nimba',
+    category: ['Rape', 'SGBV', 'Domestic violence'],
+    date: Date.now(),
+    location: 'Bain Garr District',
+    id: 1
+  },
+  {
+    title: '12 Years Old Girl Raped in Ganta',
+    county: 'Nimba',
+    category: ['Rape', 'SGBV', 'Domestic violence'],
+    date: Date.now(),
+    location: 'Bain Garr District',
+    id: 2
+  },
+  {
+    title: '12 Years Old Girl Raped in Ganta',
+    county: 'Nimba',
+    category: ['Rape', 'SGBV', 'Domestic violence'],
+    date: Date.now(),
+    location: 'Bain Garr District',
+    id: 3
+  },
+  {
+    title: '12 Years Old Girl Raped in Ganta',
+    county: 'Nimba',
+    category: ['Rape', 'SGBV', 'Domestic violence'],
+    date: Date.now(),
+    location: 'Bain Garr District',
+    id: 4
+  },
+  {
+    title: '12 Years Old Girl Raped in Ganta',
+    county: 'Nimba',
+    category: ['Rape', 'SGBV', 'Domestic violence'],
+    date: Date.now(),
+    location: 'Bain Garr District',
+    id: 5
+  }
+]
 function App() {
+  const [messages, setMessages] = useState([])
+  useEffect(() => {
+    setMessages(reports)
+  }, [])
+  const data = messages.map(report => (
+    <Report key={report.id} message={report} />
+  ))
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Map></Map>{' '}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
