@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import Report from './components/Report'
 import Map from './components/map'
+import Navigation from './components/Navigation'
 
 const reports = [
   {
@@ -45,6 +46,7 @@ const reports = [
     id: 5
   }
 ]
+
 function App() {
   const [messages, setMessages] = useState([])
   useEffect(() => {
@@ -55,8 +57,12 @@ function App() {
   ))
 
   return (
-    <div className="App">
-      <Map></Map>{' '}
+    <div className="app">
+      <Navigation />
+      <div className="reportBox">
+        <div className="reports">{data}</div>
+      </div>
+      <Map></Map>
     </div>
   )
 }

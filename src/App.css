@@ -1,11 +1,31 @@
+body {
+  overflow: hidden;
+}
+nav {
+  max-width: 3vw;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: grey;
+}
 .app {
-  display: grid;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  grid-template-columns: 30vw 1fr;
+}
+.reportBox {
+  min-width: 24vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  overflow-y: scroll;
 }
 .report {
   display: flex;
   flex-direction: column;
-  line-height: 1px;
-  max-width: 25vw;
+  line-height: 0.1vh;
   height: auto;
   margin: 8px;
   padding: 0 20px;
@@ -14,4 +34,7 @@
 
 .report:hover {
   box-shadow: 2px 2px 9px grey;
+}
+.mapBox {
+  height: 100vh;
 }
