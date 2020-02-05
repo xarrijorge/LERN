@@ -44,6 +44,22 @@ const reports = [
     date: Date.now(),
     location: 'Bain Garr District',
     id: 5
+  },
+  {
+    title: '12 Years Old Girl Raped in Ganta',
+    county: 'Nimba',
+    category: ['Rape', 'SGBV', 'Domestic violence'],
+    date: Date.now(),
+    location: 'Bain Garr District',
+    id: 6
+  },
+  {
+    title: '12 Years Old Girl Raped in Ganta',
+    county: 'Nimba',
+    category: ['Rape', 'SGBV', 'Domestic violence'],
+    date: Date.now(),
+    location: 'Bain Garr District',
+    id: 7
   }
 ]
 
@@ -62,7 +78,7 @@ function App() {
       <div className="reportBox">
         <div className="reports">{data}</div>
       </div>
-      <Map></Map>
+      <div className="detailsBox"></div>
     </div>
   )
 }
