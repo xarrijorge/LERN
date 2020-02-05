@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import './App.css'
-import Report from './components/Report'
+import React, { useState, useEffect, Fragment } from 'react'
+import axios from 'axios'
+// import './App.css'
+// import './adjust.css'
+import { Router } from '@reach/router'
+import Reports from './components/Reports'
 import Map from './components/map'
 import Navigation from './components/Navigation'
 
@@ -65,20 +68,25 @@ const reports = [
 
 function App() {
   const [messages, setMessages] = useState([])
+
+  const displayContents = () => {
+    alert('testing 123!')
+  }
   useEffect(() => {
     setMessages(reports)
   }, [])
-  const data = messages.map(report => (
-    <Report key={report.id} message={report} />
-  ))
 
   return (
-    <div className="app">
+    <div className="row">
       <Navigation />
-      <div className="reportBox">
-        <div className="reports">{data}</div>
-      </div>
-      <div className="detailsBox"></div>
+      <Router>
+        <Reports
+          handleDisplay={displayContents}
+          messages={reports}
+          path="reports"
+        />
+        <Map path="map" />
+      </Router>
     </div>
   )
 }
