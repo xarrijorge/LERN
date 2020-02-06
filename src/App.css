@@ -1,9 +1,51 @@
+body {
+  overflow: hidden;
+}
+.app {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+}
+#navigation {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  text-align: center;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  width: 100%;
+  height: 100vh;
+  background-color: #f1f1f4;
+}
+
 .reportBox {
-  height: auto;
   padding: 1%;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: scroll;
   border-right: 1px solid #f1f1f4;
   margin: 2%;
+}
+.report {
+  display: flex;
+  flex-direction: column;
+  /* line-height: 0.1vh; */
+  height: auto;
+  margin: 8px;
+  padding: 0 20px;
+  border-left: 4px solid #acacac;
+  box-shadow: 1px 1px 3px #acacac;
+  background-color: #fff;
+}
+
+.report:hover {
+  box-shadow: 2px 2px 9px grey;
+  cursor: pointer;
+}
+.detailsBox {
+  height: 100vh;
+  width: 100%;
 }
