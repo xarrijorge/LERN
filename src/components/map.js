@@ -74,7 +74,7 @@ export default function Map() {
 
           if (isCluster) {
             return (
-              <marker key={cluster.id} lat={LATITUDE} lng={LONGITUDE}>
+              <Marker key={cluster.id} lat={LATITUDE} lng={LONGITUDE}>
                 <div
                   className="clusterMarker"
                   style={{
@@ -93,7 +93,7 @@ export default function Map() {
                 >
                   {pointCount}
                 </div>
-              </marker>
+              </Marker>
             )
           }
 
