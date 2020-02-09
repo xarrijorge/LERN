@@ -13,7 +13,6 @@ export default function Map() {
   const mapRef = useRef()
   const [zoom, setZoom] = useState(10)
   const [bounds, setBounds] = useState(null)
-
   //load and format data
   const url = 'http://localhost:3001/reports'
   // const url =
