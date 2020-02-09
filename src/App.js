@@ -1,62 +1,50 @@
 import React, { useState, useEffect } from 'react'
+import reportService from './services/reports'
 import './App.css'
-import Report from './components/Report'
+// import './adjust.css'
+import { Router } from '@reach/router'
+import Reports from './components/Reports'
+import Details from './components/Details'
 import Map from './components/map'
+import Navigation from './components/Navigation'
 
-const reports = [
-  {
-    title: '12 Years Old Girl Raped in Ganta',
-    county: 'Nimba',
-    category: ['Rape', 'SGBV', 'Domestic violence'],
-    date: Date.now(),
-    location: 'Bain Garr District',
-    id: 1
-  },
-  {
-    title: '12 Years Old Girl Raped in Ganta',
-    county: 'Nimba',
-    category: ['Rape', 'SGBV', 'Domestic violence'],
-    date: Date.now(),
-    location: 'Bain Garr District',
-    id: 2
-  },
-  {
-    title: '12 Years Old Girl Raped in Ganta',
-    county: 'Nimba',
-    category: ['Rape', 'SGBV', 'Domestic violence'],
-    date: Date.now(),
-    location: 'Bain Garr District',
-    id: 3
-  },
-  {
-    title: '12 Years Old Girl Raped in Ganta',
-    county: 'Nimba',
-    category: ['Rape', 'SGBV', 'Domestic violence'],
-    date: Date.now(),
-    location: 'Bain Garr District',
-    id: 4
-  },
-  {
-    title: '12 Years Old Girl Raped in Ganta',
-    county: 'Nimba',
-    category: ['Rape', 'SGBV', 'Domestic violence'],
-    date: Date.now(),
-    location: 'Bain Garr District',
-    id: 5
-  }
-]
+const Dashboard = ({ messages, details, displayContents }) => {
+  return (
+    <div className="dashboard">
+      <Reports handleDisplay={displayContents} messages={messages} />
+      <Details details={details} />
+    </div>
+  )
+}
+let content = ''
+
 function App() {
   const [messages, setMessages] = useState([])
+  const [details, setDetails] = useState({})
+
+  const displayContents = index => {
+    content = messages[index]
+  }
+
   useEffect(() => {
-    setMessages(reports)
-  }, [])
-  const data = messages.map(report => (
-    <Report key={report.id} message={report} />
-  ))
+    reportService.getAll().then(allReports => {
+      setMessages(allReports)
+      setDetails(content)
+    })
+  }, [messages])
 
   return (
-    <div className="App">
-      <Map></Map>{' '}
+    <div className="app">
+      <Navigation />
+      <Router>
+        <Dashboard
+          messages={messages}
+          details={details}
+          displayContents={displayContents}
+          path="/*"
+        />
+        <Map path="map" />
+      </Router>
     </div>
   )
 }
