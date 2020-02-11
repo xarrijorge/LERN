@@ -45,7 +45,6 @@ export default function Map() {
   //render map
   return (
     <div className="columns">
-      <Navigation className="column is-1" />
       <div className="column">
         <div className="map">
           <GoogleMapReact

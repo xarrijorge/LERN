@@ -43,6 +43,7 @@ function App() {
 
   return (
     <Fragment>
+      <FilterNav />
       <Navigation className="column has-background-link" />
       <Router>
         <Dashboard
