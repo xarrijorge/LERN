@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import reportService from './services/reports'
 import './App.css'
-// import './adjust.css'
+import 'bulma/css/bulma.css'
+
 import { Router } from '@reach/router'
 import Reports from './components/Reports'
 import Details from './components/Details'
 import Map from './components/map'
 import Navigation from './components/Navigation'
+import FilterNav from './components/filter'
+import CreateReport from './components/Create'
+import Data from './components/data'
 
 const Dashboard = ({ messages, details, displayContents }) => {
   return (
-    <div className="dashboard">
-      <Reports handleDisplay={displayContents} messages={messages} />
-      <Details details={details} />
+    <div className="column">
+      <Reports
+        handleDisplay={displayContents}
+        messages={messages}
+        className="column"
+      />
+      <Details details={details} className="column has-background-white-bis" />
     </div>
   )
 }
@@ -34,18 +42,18 @@ function App() {
   }, [messages])
 
   return (
-    <div className="app">
-      <Navigation />
+    <Fragment>
+      <Navigation className="column has-background-link" />
       <Router>
         <Dashboard
           messages={messages}
           details={details}
           displayContents={displayContents}
-          path="/*"
+          path="reports"
         />
         <Map path="map" />
       </Router>
-    </div>
+    </Fragment>
   )
 }
 

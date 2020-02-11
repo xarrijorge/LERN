@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 export default function Filter(props) {
   return (
-    <form className="filterForm">
-      <input type="search" />
-      <button>Search & Filter</button>
-    </form>
+    <div className="filterForm">
+      <form onSubmit={props.addReport}>
+        <input type="search" className="input" />
+        <button>Search & Filter</button>
+      </form>
+    </div>
   )
 }

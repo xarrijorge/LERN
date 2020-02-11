@@ -1,73 +1,12 @@
 body {
-  overflow: hidden;
+  box-sizing: border-box;
 }
-.app {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-}
-#navigation {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
-  text-align: center;
-}
-
-.dashboard {
-  display: grid;
-  grid-template-columns: 33% 1fr;
-  width: 100%;
+nav {
   height: 100vh;
-  background-color: #f1f1f4;
-}
-
-.reportBox {
-  padding: 1%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  overflow-y: scroll;
-  border-right: 1px solid #f1f1f4;
-  margin: 2%;
 }
-.report {
-  display: flex;
-  flex-direction: column;
-  /* line-height: 0.1vh; */
-  height: auto;
-  margin: 8px;
-  padding: 0 20px;
-  border-left: 4px solid #acacac;
-  box-shadow: 1px 1px 3px #acacac;
-  background-color: #fff;
-}
-
-.report:hover {
-  box-shadow: 2px 2px 9px grey;
-  cursor: pointer;
-}
-.detailsBox {
-  height: 100vh;
+.map {
   width: 100%;
-}
-.mapMarker {
-  color: blue;
-  font-size: 20px;
-}
-
-.clusterMarker {
-  font-size: 14px;
-  padding: 10px;
-  color: #fff;
-  background-color: red;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-style: solid;
-  border-color: rgba(255, 0, 0, 0.3);
-  -webkit-background-clip: padding-box; /* for Safari */
-  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
-}
-.clusterMarker:hover {
-  cursor: pointer;
+  height: 95vh;
 }

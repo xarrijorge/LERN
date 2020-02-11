@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from '@reach/router'
 // import Icon from '@material-ui/core/Icon'
 // import '../adjust.css'
 
 export default function Navigation() {
   return (
-    <Fragment>
-      <nav id="navigation" className="bg-silver col-1">
-        <Link to="map">Map</Link>
-        <Link to="reports">Reports</Link>
-      </nav>
-    </Fragment>
+    <nav id="navigation">
+      <Link to="map">Map</Link>
+      <Link to="reports">Reports</Link>
+      <Link to="data">Data</Link>
+      <Link to="create"> New Report</Link>
+    </nav>
   )
 }

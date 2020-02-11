@@ -5,13 +5,7 @@ const Details = ({ details }) => {
     <div className="detailsBox">
       <h1>{details['INCIDENT TITLE']}</h1>
       <p>{details.DESCRIPTION}</p>
-      {/* <p>
-        {details['CATEGORY'].split(',').map((desc, i) => (
-          <span key={i} className="category">
-            {desc} |
-          </span>
-        ))}
-      </p> */}
+      <p>{details.CATEGORY}</p>
     </div>
   )
 }
