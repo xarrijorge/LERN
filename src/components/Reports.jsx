@@ -1,16 +1,25 @@
 import React from 'react'
 
 const Report = ({ message, handleClick }) => {
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }
+  const cleanDate = new Date(message['INCIDENT DATE'])
   return (
-    <div onClick={handleClick} className="report">
-      <p>{message['INCIDENT TITLE']}</p>
-      <p>{message['LOCATION']}</p>
-      <p>{message['INCIDENT DATE']}</p>
+    <div onClick={handleClick} className="report card">
+      <p className="title">{message['INCIDENT TITLE']}</p>
+      <p className="subtitle tag is-info">{message['LOCATION']}</p>
+      <p className="subtitle">
+        {cleanDate.toLocaleDateString('en-us', options)}
+      </p>
       <p>
         Category:{' '}
         {message.CATEGORY.split(',').map((desc, i) => (
-          <span key={i} className="category">
-            {desc} |{' '}
+          <span key={i} className="category tag is-warning">
+            {desc}
           </span>
         ))}
       </p>
@@ -24,7 +33,6 @@ const Reports = props => {
       key={index}
       message={report}
       handleClick={props.handleDisplay.bind(this, index)}
-      data-id={report['#']}
     />
   ))
 

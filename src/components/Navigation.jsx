@@ -5,11 +5,12 @@ import { Link } from '@reach/router'
 
 export default function Navigation() {
   return (
-    <nav id="navigation">
+    <nav id="navigation" className="has-background-dark">
       <Link to="map">Map</Link>
       <Link to="reports">Reports</Link>
-      <Link to="data">Data</Link>
-      <Link to="create"> New Report</Link>
+      <Link to="stats">Data</Link>
+      <Link to="messages"> Messages</Link>
+      <Link to="create">Create</Link>
     </nav>
   )
 }
