@@ -21,9 +21,10 @@ nav {
   align-items: center;
   justify-content: center;
 }
-.form {
+.filterForm {
   display: flex;
   width: 50%;
+  height: 90%;
   justify-content: center;
   align-items: center;
 }
@@ -62,4 +63,8 @@ nav {
 }
 .singleMessage span:hover {
   cursor: pointer;
+}
+
+form.container {
+  padding: 0 20%;
 }

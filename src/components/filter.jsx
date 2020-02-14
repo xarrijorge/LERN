@@ -3,7 +3,7 @@ import React from 'react'
 export default function Filter(props) {
   return (
     <div className="formBox has-background-dark">
-      <div className="form">
+      <div className="filterForm">
         <input
           type="search"
           className="input has-background-grey-dark has-text-grey-lighter"
