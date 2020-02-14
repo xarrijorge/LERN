@@ -39,9 +39,7 @@ const CreateReport = props => {
         </select>
       </p>
       <p className="field">
-        <label className="label" defaultValue={}>
-          Location
-        </label>
+        <label className="label">Location</label>
         <input
           type="text"
           className="input"
