@@ -15,8 +15,6 @@ export default function Map() {
   const [bounds, setBounds] = useState(null)
   //load and format data
   const url = 'http://localhost:3001/reports'
-  // const url =
-  //   'https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2019-10'
   const { data } = useSwr(url, fetcher)
 
   const reports = data ? data : []

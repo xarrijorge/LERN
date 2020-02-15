@@ -9,8 +9,7 @@ export default function Navigation() {
       <Link to="map">Map</Link>
       <Link to="reports">Reports</Link>
       <Link to="stats">Data</Link>
-      <Link to="messages"> Messages</Link>
-      <Link to="create">Create</Link>
+      <Link to="messages"> Messages</Link>>
     </nav>
   )
 }

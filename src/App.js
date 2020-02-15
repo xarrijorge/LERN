@@ -4,7 +4,7 @@ import messageService from './services/messages'
 import './App.css'
 import 'bulma/css/bulma.css'
 
-import { Router } from '@reach/router'
+import { Router, navigate } from '@reach/router'
 import Reports from './components/Reports'
 import Details from './components/Details'
 import Map from './components/map'
@@ -42,6 +42,7 @@ function App() {
 
   const createReport = index => {
     editorMessage = messages[index]
+    navigate('/create')
   }
 
   useEffect(() => {
