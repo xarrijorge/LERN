@@ -37,10 +37,11 @@ function App() {
 
   const displayContents = index => {
     content = reports[index]
+    editorMessage = messages[index]
   }
 
   const createReport = index => {
-    console.log(reports[index])
+    editorMessage = messages[index]
   }
 
   useEffect(() => {
@@ -51,12 +52,11 @@ function App() {
   }, [reports, editorText])
 
   useEffect(() => {
-    messageService.getAll().then(allMessaes => {
-      setMessages(allMessaes)
+    messageService.getAll().then(allMessages => {
+      setMessages(allMessages)
       setEditorText(editorMessage)
-      console.log(editorText)
     })
-  }, [])
+  }, [messages])
 
   return (
     <Fragment>
@@ -76,7 +76,7 @@ function App() {
         />
         <Map path="map" />
         <Data path="stats" />
-        <Create path="create" reportMessage={editorText} />
+        <Create path="create" reportMessage={editorText.message} />
       </Router>
     </Fragment>
   )

@@ -14,7 +14,11 @@ const Message = props => {
 }
 const Messages = props => {
   const data = props.messages.map((message, index) => (
-    <Message key={index} message={message} handleClick={props.handleClick} />
+    <Message
+      key={index}
+      message={message}
+      handleClick={props.handleClick.bind(this, index)}
+    />
   ))
   return <div className="container">{data}</div>
 }

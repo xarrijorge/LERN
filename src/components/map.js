@@ -3,7 +3,6 @@ import useSwr from 'swr'
 import GoogleMapReact from 'google-map-react'
 import useSuperCluster from 'use-supercluster'
 import Axios from 'axios'
-import Navigation from './Navigation'
 
 const fetcher = url => Axios.get(url).then(response => response.data)
 
