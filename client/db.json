@@ -1,0 +1,108 @@
+{
+    "reports": [{
+            "#": 2152,
+            "FORM #": 1,
+            "INCIDENT TITLE": "Chinese mining company in Grand Kru  held a concession agreement with the traditional people of Grand Kru, Liberia",
+            "INCIDENT DATE": "2020-01-07 12:48:00",
+            "LOCATION": "Grand Kru, Liberia",
+            "DESCRIPTION": "On January 7,2020,the Chinese mining company have a concession agreement with the tribal community to build Administrative Building.This brought together the total number of 152 person. Buah District, Grand kru County, Liberia.",
+            "CATEGORY": "Trusted Reports,Grand Kru",
+            "LATITUDE": 6.362654,
+            "LONGITUDE": -10.525181,
+            "FIRST NAME": "Charles N.",
+            "LAST NAME": "Goah",
+            "EMAIL": "charlesn.goah@gmail.com",
+            "APPROVED": "YES",
+            "VERIFIED": "YES"
+        },
+        {
+            "#": 2151,
+            "FORM #": 1,
+            "INCIDENT TITLE": "16 Year Old Girl Raped by 45 year Old Man in Salala District Bong County",
+            "INCIDENT DATE": "2020-02-04 09:40:00",
+            "LOCATION": "Salala District Bong County, Liberia",
+            "DESCRIPTION": "On February 4, 2020, in Salala District Bong County, a 16 year old girl was raped by 45 year old man. The perpetrator was arrested and sent to jail after judgment. While the victim was taken to hospital for treatment.",
+            "CATEGORY": "Rape",
+            "LATITUDE": 6.775581,
+            "LONGITUDE": -9.946508,
+            "FIRST NAME": "Mariama",
+            "LAST NAME": "Konneh",
+            "EMAIL": "mariamahkonneh2016@gmail.com",
+            "APPROVED": "NO",
+            "VERIFIED": "NO"
+        },
+        {
+            "#": 2150,
+            "FORM #": 1,
+            "INCIDENT TITLE": "6 year Old Raped by 31 Year Old Man in Vanlah Town Bokomu District, Gbarpolu County.",
+            "INCIDENT DATE": "2020-02-01 09:41:00",
+            "LOCATION": "Vanlah Town Bokomu District, Gbarpolu County, Liberia",
+            "DESCRIPTION": "On February 1, 2020, in Vanlah Town Bokomu District, Gbarpolu County, 31 year old man raped a 6 year old girl.",
+            "CATEGORY": "Rape",
+            "LATITUDE": 7.280952,
+            "LONGITUDE": -10.125516,
+            "FIRST NAME": "Mariama",
+            "LAST NAME": "Konneh",
+            "EMAIL": "mariamahkonneh2016@gmail.com",
+            "APPROVED": "NO",
+            "VERIFIED": "NO"
+        },
+        {
+            "#": 2149,
+            "FORM #": 1,
+            "INCIDENT TITLE": "45 Year Man Old Raped 2 Year Old Girl in Joequiken District River Gee County County, Fish Town",
+            "INCIDENT DATE": "2020-02-03 09:41:00",
+            "LOCATION": "Joequiken District River Gee County, Fish Town, Liberia",
+            "DESCRIPTION": "On February 3, 2020, In Joequiken District River Gee County, Fish Town, a 2 Year old girl child was raped by 45 year man. the child is undergoing treatment at one of the hospitals in the district, while the perpetrator is on the run and the police are in search of him.",
+            "CATEGORY": "Rape",
+            "LATITUDE": 5.200699,
+            "LONGITUDE": -7.878112,
+            "FIRST NAME": "Mariama",
+            "LAST NAME": "Konneh",
+            "EMAIL": "mariamahkonneh2016@gmail.com",
+            "APPROVED": "NO",
+            "VERIFIED": "NO"
+        },
+        {
+            "#": 2148,
+            "FORM #": 1,
+            "INCIDENT TITLE": "Man Kills Wife  and Runs Away.",
+            "INCIDENT DATE": "2020-01-24 13:06:00",
+            "LOCATION": "Grand Cape Mount, Liberia",
+            "DESCRIPTION": "PBO January 24,2020, In Robertsport, Doelein District, Vah community, A man killed his wife in cold blood on December 10. 2019, the man ran away in the hole community, while the dead wife family are still grieving.",
+            "CATEGORY": "Grand Cape Mount,Murder",
+            "LATITUDE": 7.046776,
+            "LONGITUDE": -11.071176,
+            "FIRST NAME": "",
+            "LAST NAME": "",
+            "EMAIL": "",
+            "APPROVED": "NO",
+            "VERIFIED": "NO"
+        }
+    ],
+    "messages": [{
+            "message": "testing123",
+            "id": 1
+        },
+        {
+            "message": "This means war!",
+            "id": 2
+        },
+        {
+            "message": "Its only one love if its torture",
+            "id": 3
+        },
+        {
+            "message": "This is a disturbing aberration",
+            "id": 4
+        },
+        {
+            "message": "So it begins",
+            "id": 5
+        },
+        {
+            "message": "It tells me that you participate in the mass cultural delusion that the sun's apparent position relative to arbitrarily defined constellations at the time of your birth some how affects your personality",
+            "id": 6
+        }
+    ]
+}

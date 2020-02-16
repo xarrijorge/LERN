@@ -1,0 +1,83 @@
+body {
+  position: relative;
+  overflow: hidden;
+}
+nav {
+  height: 100vh;
+  float: left;
+  display: flex;
+  flex-direction: column;
+}
+.map {
+  width: 100%;
+  height: 90vh;
+  margin-top: 2vh;
+}
+
+.formBox {
+  height: 6vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filterForm {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.filterForm input {
+  width: 50%;
+  min-width: 100px;
+}
+.filterForm button {
+  width: 15%;
+  font-size: 1vw;
+}
+.filterForm input,
+.filterForm button {
+  height: 80%;
+}
+
+.form .button {
+  margin-left: -5px;
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.reportBox {
+  width: 30vw;
+  height: 90vh;
+  margin-right: 50px;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.report {
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.report:hover {
+  cursor: pointer;
+}
+.category {
+  margin: 0 5px;
+}
+.detailsBox {
+  width: 50vw;
+  padding: 20px;
+}
+.singleMessage {
+  margin: 5px 0;
+}
+.singleMessage span:hover {
+  cursor: pointer;
+}
+
+form.container {
+  padding: 0 20%;
+}
