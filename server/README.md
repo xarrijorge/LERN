@@ -1,6 +1,6 @@
 # lern-backend
 
-> Feathersjs API service for LERN Reactjs client frontend
+> backend of new lern platform
 
 ## About
 
