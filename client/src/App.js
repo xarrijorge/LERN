@@ -13,6 +13,7 @@ import FilterNav from './components/filter'
 import Data from './components/data'
 import Messages from './components/Messages'
 import Create from './components/Create'
+import Login from './components/login'
 
 const Dashboard = ({ messages, details, displayContents }) => {
   return (
@@ -47,7 +48,8 @@ function App() {
 
   useEffect(() => {
     reportService.getAll().then(allReports => {
-      setReports(allReports)
+      console.log(allReports.data)
+      setReports(allReports.data)
       setDetails(content)
     })
   }, [reports, editorText])
@@ -78,6 +80,7 @@ function App() {
         <Map path="map" />
         <Data path="stats" />
         <Create path="create" reportMessage={editorText} />
+        <Login path="login" />
       </Router>
     </Fragment>
   )

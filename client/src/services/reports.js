@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/reports'
+const baseUrl = 'https://pbo-lern.herokuapp.com/reports'
 
 const getAll = () => {
   const request = axios.get(baseUrl)

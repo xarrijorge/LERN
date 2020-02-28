@@ -28,5 +28,5 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb+srv://xroot:Rup4DB@lern-selee.mongodb.net/test?retryWrites=true&w=majority"
+  "mongodb": "mongodb+srv://xroot:Rup4DB@lern-selee.mongodb.net/lern"
 }

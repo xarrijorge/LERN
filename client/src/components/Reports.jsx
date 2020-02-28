@@ -15,14 +15,14 @@ const Report = ({ message, handleClick }) => {
       <p className="subtitle">
         {cleanDate.toLocaleDateString('en-us', options)}
       </p>
-      <p>
+      {/* <p>
         Category:{' '}
         {message.CATEGORY.split(',').map((desc, i) => (
           <span key={i} className="category tag is-warning">
             {desc}
           </span>
         ))}
-      </p>
+      </p> */}
     </div>
   )
 }
