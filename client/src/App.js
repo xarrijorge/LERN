@@ -1,4 +1,3 @@
-require('dotenv').config()
 import React, { useState, useEffect, Fragment } from 'react'
 import reportService from './services/reports'
 import messageService from './services/messages'
@@ -9,7 +8,7 @@ import { Router, navigate } from '@reach/router'
 import Reports from './components/Reports'
 import Details from './components/Details'
 import Map from './components/map'
-import Navigation from './components/Navigation'
+import FrontNav from './components/Navigation'
 import FilterNav from './components/filter'
 import Data from './components/data'
 import Messages from './components/Messages'
@@ -65,7 +64,7 @@ function App() {
   return (
     <Fragment>
       <FilterNav />
-      <Navigation className="column has-background-link" />
+      <FrontNav className="column has-background-link" />
       <Router>
         <Dashboard
           messages={reports}

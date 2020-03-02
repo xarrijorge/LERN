@@ -51,7 +51,7 @@ export default function Map() {
       <div className="column">
         <div className="map">
           <GoogleMapReact
-            bootstrapURLKeys={{ key: process.env.REACT_APP_LERN_MAP_API_KEY }}
+            bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_API_KEY }}
             defaultCenter={{ lat: 6.4802, lng: -9.6728 }}
             // defaultCenter={{ lat: 52.6376, lng: -1.135171 }}
             defaultZoom={8.2}
