@@ -53,13 +53,13 @@ function App() {
     })
   }, [reports, editorText])
 
-  useEffect(() => {
-    messageService.getAll().then(allMessages => {
-      console.log('messages are', allMessages)
-      setMessages(allMessages)
-      setEditorText(editorMessage)
-    })
-  }, [messages])
+  // useEffect(() => {
+  //   messageService.getAll().then(allMessages => {
+  //     console.log('messages are', allMessages)
+  //     setMessages(allMessages)
+  //     setEditorText(editorMessage)
+  //   })
+  // }, [messages])
 
   return (
     <Fragment>
@@ -70,7 +70,7 @@ function App() {
           messages={reports}
           details={details}
           displayContents={displayContents}
-          path="reports"
+          path="/*"
         />
         <Messages
           path="messages"

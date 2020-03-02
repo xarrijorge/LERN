@@ -4,7 +4,10 @@ import GoogleMapReact from 'google-map-react'
 import useSuperCluster from 'use-supercluster'
 import Axios from 'axios'
 
-const fetcher = url => Axios.get(url).then(response => response.data)
+const fetcher = async url => {
+  const response = await Axios.get(url)
+  return response.data.data
+}
 
 const Marker = ({ children }) => children
 
@@ -14,7 +17,7 @@ export default function Map() {
   const [zoom, setZoom] = useState(10)
   const [bounds, setBounds] = useState(null)
   //load and format data
-  const url = 'http://localhost:3001/reports'
+  const url = 'https://pbo-lern.herokuapp.com/reports'
   const { data } = useSwr(url, fetcher)
 
   const reports = data ? data : []
@@ -27,7 +30,10 @@ export default function Map() {
     },
     geometry: {
       type: 'Point',
-      coordinates: [parseFloat(report.LONGITUDE), parseFloat(report.LATITUDE)]
+      coordinates: [
+        parseFloat(report.location.lon),
+        parseFloat(report.location.lat)
+      ]
     }
   }))
 
@@ -65,7 +71,7 @@ export default function Map() {
           >
             {/* Markers */}
             {clusters.map(cluster => {
-              const [LONGITUDE, LATITUDE] = cluster.geometry.coordinates
+              const [lon, lat] = cluster.geometry.coordinates
               const {
                 cluster: isCluster,
                 point_count: pointCount
@@ -73,7 +79,7 @@ export default function Map() {
 
               if (isCluster) {
                 return (
-                  <Marker key={cluster.id} lat={LATITUDE} lng={LONGITUDE}>
+                  <Marker key={cluster.id} lat={lat} lng={lon}>
                     <div
                       className="clusterMarker"
                       style={{
@@ -87,7 +93,7 @@ export default function Map() {
                           20
                         )
                         mapRef.current.setZoom(expansionZoom)
-                        mapRef.current.panTo({ lat: LATITUDE, lng: LONGITUDE })
+                        mapRef.current.panTo({ lat: lat, lng: lon })
                       }}
                     >
                       {pointCount}
@@ -97,11 +103,7 @@ export default function Map() {
               }
 
               return (
-                <Marker
-                  key={cluster.properties.reportId}
-                  lat={LATITUDE}
-                  lng={LONGITUDE}
-                >
+                <Marker key={cluster.properties.reportId} lat={lat} lng={lon}>
                   <i className="material-icons mapMarker">place</i>
                 </Marker>
               )

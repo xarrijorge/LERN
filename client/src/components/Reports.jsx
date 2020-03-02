@@ -7,22 +7,22 @@ const Report = ({ message, handleClick }) => {
     month: 'long',
     day: 'numeric'
   }
-  const cleanDate = new Date(message['INCIDENT DATE'])
+  const cleanDate = new Date(message.date)
   return (
     <div onClick={handleClick} className="report card">
-      <p className="title">{message['INCIDENT TITLE']}</p>
-      <p className="subtitle tag is-info">{message['LOCATION']}</p>
+      <p className="title">{message.title}</p>
+      <p className="subtitle tag is-info">{message.location.place}</p>
       <p className="subtitle">
         {cleanDate.toLocaleDateString('en-us', options)}
       </p>
-      {/* <p>
+      <p>
         Category:{' '}
-        {message.CATEGORY.split(',').map((desc, i) => (
+        {message.category.map((desc, i) => (
           <span key={i} className="category tag is-warning">
             {desc}
           </span>
         ))}
-      </p> */}
+      </p>
     </div>
   )
 }
