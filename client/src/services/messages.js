@@ -2,9 +2,13 @@ import axios from 'axios'
 
 const baseUrl = 'https://pbo-lern.herokuapp.com/messages'
 
-const getAll = () => {
-  const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+const getAll = async () => {
+  const request = await axios.get(baseUrl)
+  return request.data
 }
 
-export default { getAll }
+const deleteOne = id => {
+  axios.delete(`${baseUrl}/${id}`)
+}
+
+export default { getAll, deleteOne }

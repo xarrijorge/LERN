@@ -2,21 +2,22 @@ import axios from 'axios'
 
 const baseUrl = 'https://pbo-lern.herokuapp.com/reports'
 
-const getAll = () => {
-  const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+const getAll = async () => {
+  const request = await axios.get(baseUrl)
+
+  return request.data
 }
 
-const create = newReport => {
-  const requesst = axios.post(baseUrl, newReport)
+const create = async newReport => {
+  const request = await axios.post(baseUrl, newReport)
 
-  return requesst.then(response => response.data)
+  return request.data
 }
 
-const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`)
+const update = async (id, newObject) => {
+  const request = await axios.put(`${baseUrl}/${id}`)
 
-  return request.then(response => response.data)
+  return request.data
 }
 
 const deleteOne = id => {

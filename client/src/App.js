@@ -48,7 +48,6 @@ function App() {
 
   useEffect(() => {
     reportService.getAll().then(allReports => {
-      console.log(allReports.data)
       setReports(allReports.data)
       setDetails(content)
     })
@@ -56,6 +55,7 @@ function App() {
 
   useEffect(() => {
     messageService.getAll().then(allMessages => {
+      console.log('messages are', allMessages)
       setMessages(allMessages)
       setEditorText(editorMessage)
     })
