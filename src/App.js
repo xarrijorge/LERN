@@ -1,4 +1,3 @@
-require('dotenv').config()
 import React, { useState, useEffect, Fragment } from 'react'
 import reportService from './services/reports'
 import messageService from './services/messages'
