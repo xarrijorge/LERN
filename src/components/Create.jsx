@@ -14,51 +14,43 @@ const CreateReport = props => {
   ))
 
   return (
-    <form className="container">
-      <p className="field">
-        <label className="label">Title</label>{' '}
-        <input type="text" className="input" required />
+    <form>
+      <p>
+        <label>Title</label> <input type="text" required />
       </p>
-      <p className="field">
-        <label className="label">Report</label>
+      <p>
+        <label>Report</label>
         <textarea
           name="report"
           cols="10"
           rows="5"
-          className="textarea"
           defaultValue={props.reportMessage.message}
           required
         >
           {props.message}
         </textarea>
       </p>
-      <p className="field">
-        <label className="label">County</label>
+      <p>
+        <label>County</label>
         <select name="county" id="couonty">
           {countyData}
         </select>
       </p>
-      <p className="field">
-        <label className="label">Location</label>
-        <input
-          type="text"
-          className="input"
-          placeholder="District | City | Town"
-        />
+      <p>
+        <label>Location</label>
+        <input type="text" placeholder="District | City | Town" />
       </p>
-      <p className="field select is-multiple">
-        <label className="label">Category</label>
+      <p>
+        <label>Category</label>
         <select name="category" id="category" multiple size="8">
           {categoriesData}
         </select>
       </p>
       <p className="field">
-        <label className="label">Date</label>
-        <input type="date" className="date" />
+        <label>Date</label>
+        <input type="date" />
       </p>
-      <button type="submit" className="button is-primary">
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   )
 }

@@ -2,12 +2,10 @@ import React from 'react'
 
 const Message = props => {
   return (
-    <div className="singleMessage box">
+    <div className="singleMessage">
       <p>
         {props.message.message}{' '}
-        <span className="tag is-info" onClick={props.handleClick}>
-          create Report
-        </span>
+        <span onClick={props.handleClick}>create Report</span>
       </p>
     </div>
   )
@@ -20,6 +18,6 @@ const Messages = props => {
       handleClick={props.handleClick.bind(this, index)}
     />
   ))
-  return <div className="container">{data}</div>
+  return <div>{data}</div>
 }
 export default Messages

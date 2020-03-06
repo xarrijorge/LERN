@@ -1,18 +1,20 @@
 import React from 'react'
+import { Input, Row, Col } from 'antd'
+
+const { Search } = Input
 
 export default function Filter(props) {
   return (
-    <div className="formBox has-background-dark">
-      <div className="filterForm form">
-        <input
-          type="search"
-          className="input has-background-grey-dark has-text-grey-lighter"
+    <div className="filterBox">
+      <Col flex="3">
+        <Search
+          placeholder="input search text"
+          enterButton
+          size="large"
+          onSearch={value => console.log(value)}
+          className="filterForm"
         />
-        <button className="button has-background-dark has-text-grey-lighter">
-          Search & Filter
-        </button>
-      </div>
-      <div className="fakeLayout"></div>
+      </Col>
     </div>
   )
 }
