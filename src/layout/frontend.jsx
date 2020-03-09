@@ -15,7 +15,7 @@ const { Header, Sider, Content } = Layout
 const MockReport = ({ messages, details, displayContents }) => {
   return (
     <Row>
-      <Col span={8}>
+      <Col>
         <Reports handleDisplay={displayContents} messages={messages} />
       </Col>
       <Col span={12}>

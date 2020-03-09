@@ -17,13 +17,13 @@ const counties = [
 ]
 
 const categories = [
-  'Trusted Report',
-  'Rape',
-  'Land dispute',
-  'Crime',
-  'Border Crossing',
-  'Drug Trafficking',
-  'Domestic Violence'
+  { name: 'Trusted Reports', color: 'blue' },
+  { name: 'Rape', color: 'red' },
+  { name: 'Land dispute', color: 'green' },
+  { name: 'Crime', color: 'magenta' },
+  { name: 'Border Crossing', color: 'gold' },
+  { name: 'Drug Trafficking', color: 'purple' },
+  { name: 'Domestic Violence', color: 'geekblue' }
 ]
 
 export { counties, categories }

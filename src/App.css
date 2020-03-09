@@ -1,6 +1,6 @@
 @import '~antd/dist/antd.css';
 body {
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .logo {
@@ -9,12 +9,34 @@ body {
 }
 
 .frontContent {
-  padding: 80px;
+  /* padding: 80px; */
   background-color: #fff;
   margin-top: 10px;
 }
 
 .frontLayout {
-  padding: 20px 50px;
+  margin: 20px 50px;
   background-color: #f5f5f5;
+  max-height: 99vh;
+  overflow: hidden;
+}
+
+.reportsBox {
+  margin-right: 100px;
+  padding: 20px;
+  border-right: 2px solid grey;
+  height: 94vh;
+  width: 30vw;
+  overflow: scroll;
+}
+
+.mapBox {
+  /* position: relative; */
+  /* top: -5%; */
+  width: 90vw;
+  height: 85vh;
+}
+
+.tag {
+  margin: 10px 5px;
 }

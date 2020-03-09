@@ -1,4 +1,6 @@
 import React from 'react'
+import { Card, Tag } from 'antd'
+import { categories } from '../utils/category'
 
 const Report = ({ message, handleClick }) => {
   const options = {
@@ -7,19 +9,35 @@ const Report = ({ message, handleClick }) => {
     month: 'long',
     day: 'numeric'
   }
+
   const cleanDate = new Date(message.date)
+
+  const catData = message.category.map((desc, i) => {
+    let catColor = categories.find(cat => cat.name === desc).color
+    return (
+      <Tag key={i} color={catColor} className="tag">
+        {desc}
+      </Tag>
+    )
+  })
+
   return (
-    <div onClick={handleClick} className="report">
-      <p>{message.title}</p>
-      <p>{message.location.place}</p>
-      <p>{cleanDate.toLocaleDateString('en-us', options)}</p>
-      <p>
-        Category:{' '}
-        {message.category.map((desc, i) => (
-          <span key={i}>{desc}</span>
-        ))}
-      </p>
-    </div>
+    <>
+      <Card
+        title={message.title}
+        onClick={handleClick}
+        hoverable
+        style={{ margin: '5px 0' }}
+      >
+        <Tag color="#108ee9" className="tag">
+          {message.location.place}
+        </Tag>
+        <Tag color="#67d068" className="tag">
+          {cleanDate.toLocaleDateString('en-us', options)}
+        </Tag>
+        <p>Category: {catData}</p>
+      </Card>
+    </>
   )
 }
 
@@ -32,6 +50,6 @@ const Reports = props => {
     />
   ))
 
-  return <div>{reports}</div>
+  return <div className="reportsBox">{reports}</div>
 }
 export default Reports
