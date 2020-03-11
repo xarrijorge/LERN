@@ -25,9 +25,14 @@ body {
   margin-right: 100px;
   padding: 20px;
   border-right: 2px solid grey;
-  height: 100vh;
+  height: 90vh;
   width: 30vw;
-  overflow: scroll;
+  overflow-y: scroll;
+  background-color: #fff;
+}
+
+.reportsBox::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .tag {

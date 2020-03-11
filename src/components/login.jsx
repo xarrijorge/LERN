@@ -21,6 +21,9 @@ export default props => {
   }
   return (
     <div className="loginForm">
+      <div>
+        <img src="" alt="" />
+      </div>
       <Form
         className="form"
         {...layout}
@@ -29,6 +32,7 @@ export default props => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         size="large"
+        onSubmit={props.handleSubmit}
       >
         <Form.Item
           label="Username"

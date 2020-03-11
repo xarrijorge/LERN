@@ -38,7 +38,7 @@ function App() {
       setReports(allReports.data)
       setDetails(content)
     })
-  }, [reports, editorText])
+  }, [reports])
 
   // useEffect(() => {
   //   messageService.getAll().then(allMessages => {
