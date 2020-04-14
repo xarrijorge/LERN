@@ -1,11 +1,11 @@
-import {Schema} from 'mongoose'
+import { Schema } from 'mongoose'
 
 const messageSchema = Schema({
   message: {
     type: String,
     require: true
   },
-  date: {type: Date, default: Date.now}
+  date: { type: Date, default: Date.now }
 })
 
 messageSchema.set('toJSON', {
@@ -16,4 +16,6 @@ messageSchema.set('toJSON', {
   }
 })
 
-module.exports mongoose.model('Message', messageSchema);
+const Message = mongoose.model('Message', messageSchema)
+
+module.exports = Message

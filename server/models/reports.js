@@ -1,4 +1,4 @@
-import {Schema} from 'mongoose'
+import { Schema } from 'mongoose'
 
 const reportSchema = Schema({
   title: {
@@ -6,13 +6,13 @@ const reportSchema = Schema({
     require: true
   },
   description: String,
-  date: {type: Date, default: Date.now},
-  category: {type: [String], require: true},
+  date: { type: Date, default: Date.now },
+  category: { type: [String], require: true },
   location: {
-      county: String,
-      place: String,
-      lat: Number,
-      lon: Number
+    county: String,
+    place: String,
+    lat: Number,
+    lon: Number
   },
   verify: Boolean,
   approved: Boolean
@@ -26,4 +26,6 @@ reportSchema.set('toJSON', {
   }
 })
 
-module.exports mongoose.model('Report', reportSchema);
+const Report = mongoose.model('Report', reportSchema)
+
+module.exports = Report
