@@ -22,6 +22,10 @@ let messages = [
   },
 ]
 
+const generateId = () => {
+  const maxId = messages.length > 0 ? Math.max(...messages.map((m) => m.id)) : 0
+  return maxId + 1
+}
 // Getting all messages
 
 router.get('/', (req, res) => {
@@ -31,14 +35,34 @@ router.get('/', (req, res) => {
 // Adding a single message
 
 router.post('/', (req, res) => {
-  const maxId = messages.length > 0 ? Math.max(...messages.map((m) => m.id)) : 0
+  const body = req.body
 
-  const message = req.body
+  if (!body.content) {
+    return res.status(400).json({
+      error: 'missing content',
+    })
+  }
 
-  message.id = maxId + 1
+  const message = {
+    content: body.content,
+    important: body.important ?? false,
+    date: new Date(),
+    id: generateId(),
+  }
 
   messages = messages.concat(message)
 
+  res.json(message)
+})
+
+// Getting a single message
+
+router.get('/:id', (req, res) => {
+  const id = Number(req.params.id)
+
+  const message =
+    messages.find((message) => message.id === id) ??
+    `Sorry, message #${id} doesn't exist`
   res.json(message)
 })
 
