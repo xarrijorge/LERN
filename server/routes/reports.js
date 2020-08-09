@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const reports = [
+let reports = [
   {
     id: 1,
     content: 'HTML is easy',
@@ -21,6 +21,10 @@ const reports = [
     important: true,
   },
 ]
+const generateId = () => {
+  const maxId = reports.length > 0 ? Math.max(...reports.map((m) => m.id)) : 0
+  return maxId + 1
+}
 
 // Getting all reports
 
@@ -41,15 +45,28 @@ router.get('/:id', (req, res) => {
 
 // Adding a report
 router.post('/', (req, res) => {
-  const maxId = reports.length > 0 ? Math.max(...reports.map((r) => r.id)) : 0
-  const report = req.body
+  const body = req.body
 
-  report.id = maxId++
+  if (!body.content) {
+    return res.status(400).json({
+      error: 'missing content',
+    })
+  }
+
+  const report = {
+    content: body.content,
+    approve: body.approve ?? false,
+    date: new Date(),
+    id: generateId(),
+  }
 
   reports = reports.concat(report)
 
   res.json(report)
 })
+
+// Updating a report
+
 // Deleting a single report
 router.delete('/', (req, res) => {
   const id = Number(req.params.id)
