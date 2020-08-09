@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
 
   const report = {
     content: body.content,
-    approve: body.approve ?? false,
+    approve: body.approve || false,
     date: new Date(),
     id: generateId(),
   }

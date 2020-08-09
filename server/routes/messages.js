@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
 
   const message = {
     content: body.content,
-    important: body.important ?? false,
+    important: body.important || false,
     date: new Date(),
     id: generateId(),
   }
