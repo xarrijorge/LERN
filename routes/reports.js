@@ -55,8 +55,8 @@ router.post('/', (req, res) => {
 
   const report = {
     content: body.content,
-    approve: body.approve || false,
-    date: new Date(),
+    approve: body.approve ?? false,
+    date: body.date ?? new Date(),
     id: generateId(),
   }
 
@@ -66,6 +66,25 @@ router.post('/', (req, res) => {
 })
 
 // Updating a single report
+router.put('/:id', (req, res) => {
+  const id = Number(req.params.id)
+  let report = reports.find((report) => report.id === id)
+  let reportIndex = Number(reports.findIndex((el) => el.id === id))
+
+  const body = req.body
+
+  report = {
+    content: body.content,
+    approve: body.approve,
+    date: body.date ?? new Date(),
+    index: reportIndex,
+    id: id,
+  }
+  console.log(reportIndex)
+  delete reports[reportIndex]
+  reports[reportIndex] = report
+  res.json(report)
+})
 
 // Updating multiple reports
 
