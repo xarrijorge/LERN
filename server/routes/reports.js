@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
   res.json(reports)
 })
 
-// Getting one report
+// Getting a single report
 
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
@@ -65,10 +65,12 @@ router.post('/', (req, res) => {
   res.json(report)
 })
 
-// Updating a report
+// Updating a single report
+
+// Updating multiple reports
 
 // Deleting a single report
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = Number(req.params.id)
   reports = reports.filter((report) => report.id !== id)
 

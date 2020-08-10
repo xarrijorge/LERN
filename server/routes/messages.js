@@ -22,10 +22,14 @@ let messages = [
   },
 ]
 
+// Route related methods
+
 const generateId = () => {
   const maxId = messages.length > 0 ? Math.max(...messages.map((m) => m.id)) : 0
   return maxId + 1
 }
+
+// Actual Routes
 // Getting all messages
 
 router.get('/', (req, res) => {
@@ -55,16 +59,16 @@ router.post('/', (req, res) => {
   res.json(message)
 })
 
-// Getting a single message
+// // Getting a single message
 
-router.get('/:id', (req, res) => {
-  const id = Number(req.params.id)
+// router.get('/:id', (req, res) => {
+//   const id = Number(req.params.id)
 
-  const message =
-    messages.find((message) => message.id === id) ??
-    `Sorry, message #${id} doesn't exist`
-  res.json(message)
-})
+//   const message =
+//     messages.find((message) => message.id === id) ??
+//     `Sorry, message #${id} doesn't exist`
+//   res.json(message)
+// })
 
 // Deleting a single message
 
