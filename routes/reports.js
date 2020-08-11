@@ -1,26 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const Report = require('../models/reports')
 
-let reports = [
-  {
-    id: 1,
-    content: 'HTML is easy',
-    date: '2019-05-30T17:30:31.098Z',
-    important: true,
-  },
-  {
-    id: 2,
-    content: 'Browser can execute only Javascript',
-    date: '2019-05-30T18:39:34.091Z',
-    important: false,
-  },
-  {
-    id: 3,
-    content: 'GET and POST are the most important methods of HTTP protocol',
-    date: '2019-05-30T19:20:14.298Z',
-    important: true,
-  },
-]
 const generateId = () => {
   const maxId = reports.length > 0 ? Math.max(...reports.map((m) => m.id)) : 0
   return maxId + 1
@@ -29,18 +10,21 @@ const generateId = () => {
 // Getting all reports
 
 router.get('/', (req, res) => {
-  res.json(reports)
+  Report.find({}).then((reports) => res.json(reports))
 })
 
 // Getting a single report
 
-router.get('/:id', (req, res) => {
-  const id = Number(req.params.id)
-
-  const report =
-    reports.find((report) => report.id === id) ??
-    `Sorry, report #${id} doesn't exist!`
-  res.json(report)
+router.get('/:id', (req, res, next) => {
+  Report.findById(req.params.id)
+    .then((report) => {
+      if (report) {
+        res.json(report)
+      } else {
+        res.status(404).end()
+      }
+    })
+    .catch((error) => next(error))
 })
 
 // Adding a report
@@ -53,46 +37,43 @@ router.post('/', (req, res) => {
     })
   }
 
-  const report = {
+  const report = new Report({
+    title: body.title,
     content: body.content,
     approve: body.approve ?? false,
     date: body.date ?? new Date(),
     id: generateId(),
-  }
+  })
 
-  reports = reports.concat(report)
-
-  res.json(report)
+  report.save().then((savedReport) => {
+    res.json(savedReport)
+  })
 })
 
 // Updating a single report
-router.put('/:id', (req, res) => {
-  const id = Number(req.params.id)
-  let report = reports.find((report) => report.id === id)
-  let reportIndex = Number(reports.findIndex((el) => el.id === id))
-
+router.put('/:id', (req, res, next) => {
   const body = req.body
 
   report = {
+    title: body.title,
     content: body.content,
     approve: body.approve,
-    date: body.date ?? new Date(),
-    index: reportIndex,
-    id: id,
   }
-  console.log(reportIndex)
-  delete reports[reportIndex]
-  reports[reportIndex] = report
-  res.json(report)
+  Report.findByIdAndUpdate(req.params.id, report, { new: true })
+    .then((updatedReport) => {
+      res.json(updatedReport)
+    })
+    .catch((error) => next(error))
 })
 
 // Updating multiple reports
 
 // Deleting a single report
-router.delete('/:id', (req, res) => {
-  const id = Number(req.params.id)
-  reports = reports.filter((report) => report.id !== id)
-
-  res.status(204).end()
+router.delete('/:id', (req, res, next) => {
+  Report.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.status(204).end()
+    })
+    .catch((error) => next(error))
 })
 module.exports = router
