@@ -6,42 +6,34 @@ const url = process.env.MONGODB_URI
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
-const reportSchema = new Schema({
-  title: {
+const userSchema = new Schema({
+  username: {
+    type: String,
+    minlength: 5,
+    required: true,
+  },
+  name: {
+    type: String,
+    minlength: 8,
+    required: true,
+  },
+  email: {
     type: String,
     required: true,
   },
-  content: {
+  password: {
     type: String,
     required: true,
   },
-  location: {
-    place: String,
-    coordinates: [Number],
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  subCategory: [],
-  date: {
-    type: Date,
-    required: true,
-  },
-  enumerator: {
-    type: String,
-    required: true,
-  },
-  approve: Boolean,
+  lastlogin: Date,
 })
 
-/* eslint no-param-reassign: off */
-
-reportSchema.set('toJSON', {
+userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
+    returnedObject.id = returnedObject._id
     delete returnedObject._id
     delete returnedObject.__v
   },
 })
-module.exports = mongoose.model('Report', reportSchema)
+
+module.exports = mongoose.model('User', userSchema)

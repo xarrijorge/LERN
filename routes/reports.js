@@ -2,11 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Report = require('../models/reports')
 
-const generateId = () => {
-  const maxId = reports.length > 0 ? Math.max(...reports.map((m) => m.id)) : 0
-  return maxId + 1
-}
-
 // Getting all reports
 
 router.get('/', (req, res) => {
@@ -45,24 +40,20 @@ router.post('/', (req, res) => {
     id: generateId(),
   })
 
-  report.save().then((savedReport) => {
-    res.json(savedReport)
-  })
+  report.save().then((savedReport) => res.json(savedReport))
 })
 
 // Updating a single report
 router.put('/:id', (req, res, next) => {
   const body = req.body
 
-  report = {
+  let report = {
     title: body.title,
     content: body.content,
     approve: body.approve,
   }
   Report.findByIdAndUpdate(req.params.id, report, { new: true })
-    .then((updatedReport) => {
-      res.json(updatedReport)
-    })
+    .then((updatedReport) => res.json(updatedReport))
     .catch((error) => next(error))
 })
 
@@ -71,9 +62,7 @@ router.put('/:id', (req, res, next) => {
 // Deleting a single report
 router.delete('/:id', (req, res, next) => {
   Report.findByIdAndDelete(req.params.id)
-    .then((result) => {
-      res.status(204).end()
-    })
+    .then((result) => res.status(204).end())
     .catch((error) => next(error))
 })
 module.exports = router
