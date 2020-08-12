@@ -11,12 +11,13 @@ const reportSchema = new Schema({
     type: String,
     required: true,
   },
-  content: {
+  description: {
     type: String,
     required: true,
   },
   location: {
     place: String,
+    county: String,
     coordinates: [Number],
   },
   category: {

@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const messagesRouter = require('./routes/messages')
 const reportsRouter = require('./routes/reports')
+const reportersRouter = require('./routes/reporters')
 
 const app = express()
 
@@ -29,5 +30,6 @@ app.use('/', indexRouter)
 app.use('/messages', messagesRouter)
 app.use('/users', usersRouter)
 app.use('/reports', reportsRouter)
+app.use('/reporters', reportersRouter)
 
 module.exports = app
