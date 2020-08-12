@@ -36,8 +36,8 @@ router.post('/', (req, res) => {
   const report = new Report({
     title: body.title,
     content: body.content,
-    approve: body.approve ?? false,
-    date: body.date ?? new Date(),
+    approve: body.approve || false,
+    date: body.date || new Date(),
   })
 
   report.save().then((savedReport) => res.json(savedReport))
