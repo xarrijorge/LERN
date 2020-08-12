@@ -1,4 +1,5 @@
 const express = require('express')
+
 const router = express.Router()
 const Message = require('../models/messages')
 
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
 // Adding a single message
 
 router.post('/', (req, res) => {
-  const body = req.body
+  const { body } = req
 
   const message = new Message({
     content: body.content,
@@ -38,9 +39,7 @@ router.post('/', (req, res) => {
 // Deleting a single message
 
 router.delete('/:id', (req, res) => {
-  Message.findByIdAndDelete(req.params.id).then((result) =>
-    res.status(204).end()
-  )
+  Message.findByIdAndDelete(req.params.id).then(() => res.status(204).end())
 })
 
 module.exports = router

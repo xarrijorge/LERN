@@ -13,5 +13,6 @@ module.exports = {
     quotes: ['error', 'single'],
     'no-underscore-dangle': ['error', { allow: ['_id', '__v'] }],
     'no-param-reassign': ['error', { props: false }],
+    'no-console': 0,
   },
 }

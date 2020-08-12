@@ -1,4 +1,5 @@
 const express = require('express')
+
 const router = express.Router()
 const Report = require('../models/reports')
 
@@ -24,20 +25,19 @@ router.get('/:id', (req, res, next) => {
 
 // Adding a report
 router.post('/', (req, res) => {
-  const body = req.body
+  const { body } = req
 
-  if (!body.content) {
-    return res.status(400).json({
-      error: 'missing content',
-    })
-  }
+  // if (!body.content) {
+  //   return res.status(400).json({
+  //     error: 'missing content',
+  //   })
+  // }
 
   const report = new Report({
     title: body.title,
     content: body.content,
     approve: body.approve ?? false,
     date: body.date ?? new Date(),
-    id: generateId(),
   })
 
   report.save().then((savedReport) => res.json(savedReport))
@@ -45,9 +45,9 @@ router.post('/', (req, res) => {
 
 // Updating a single report
 router.put('/:id', (req, res, next) => {
-  const body = req.body
+  const { body } = req
 
-  let report = {
+  const report = {
     title: body.title,
     content: body.content,
     approve: body.approve,
@@ -62,7 +62,7 @@ router.put('/:id', (req, res, next) => {
 // Deleting a single report
 router.delete('/:id', (req, res, next) => {
   Report.findByIdAndDelete(req.params.id)
-    .then((result) => res.status(204).end())
+    .then(() => res.status(204).end())
     .catch((error) => next(error))
 })
 module.exports = router

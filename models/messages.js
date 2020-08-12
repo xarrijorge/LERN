@@ -2,10 +2,6 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 
-const url = process.env.MONGODB_URI
-
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-
 const messageSchema = new Schema({
   content: {
     type: String,
