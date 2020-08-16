@@ -4,24 +4,25 @@ const router = express.Router()
 const Reporter = require('../models/reporters')
 
 // Getting a list of all reporters
-router.get('/', (req, res) => {
-  Reporter.find({}).then((reporters) => res.json(reporters))
+router.get('/', async (req, res) => {
+  const reporters = await Reporter.find({})
+  res.json(reporters)
 })
 
 // Gettin a reporter's data
-router.get('/:id', (req, res, next) => {
-  Reporter.findById(req.params.id)
-    .then((reporter) => res.json(reporter))
-    .catch((error) => next(error))
+router.get('/:id', async (req, res) => {
+  const reporter = await Reporter.findById(req.params.id)
+  return reporter ? res.json(reporter) : res.status(404).end()
 })
 
 // Adding a reporter
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { body } = req
 
   const reporter = new Reporter({ ...body })
 
-  reporter.save().then((savedReporter) => res.json(savedReporter))
+  await reporter.save()
+  res.json(reporter)
 })
 
 // Updating a reporter's data
@@ -35,10 +36,9 @@ router.put('/:id', (req, res, next) => {
 })
 
 // Removing a reporter
-router.delete('/:id', (req, res, next) => {
-  Reporter.findByIdAndDelete(req.params.id)
-    .then(() => res.status(204).end())
-    .catch((error) => next(error))
+router.delete('/:id', async (req, res) => {
+  await Reporter.findByIdAndDelete(req.params.id)
+  res.status(204).end()
 })
 
 module.exports = router

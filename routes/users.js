@@ -1,32 +1,36 @@
+const bcrypt = require('bcrypt')
 const express = require('express')
 
 const router = express.Router()
 const User = require('../models/users')
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  User.find({})
-    .then((users) => res.json(users))
-    .catch((error) => next(error))
+router.get('/', async (req, res) => {
+  const users = await User.find({})
+  res.json(users)
 })
 
 // Adding a user
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { body } = req
+
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(body.password, saltRounds)
 
   const user = new User({
     username: body.username,
     name: body.name,
     email: body.email,
-    password: body.password,
-    lastlogin: new Date(),
+    passwordHash,
+    lastlogin: body.date || new Date(),
   })
 
-  user.save().then((savedUser) => res.json(savedUser))
+  await user.save()
+  res.json(user)
 })
 
 // Updating a user
-router.put('/:id', (req, res, next) => {
+router.put('/:id', async (req, res) => {
   const { body } = req
 
   const user = {
@@ -35,16 +39,16 @@ router.put('/:id', (req, res, next) => {
     password: body.password,
   }
 
-  User.findByIdAndUpdate(req.params.id, user, { new: true })
-    .then((updatedUser) => res.json(updatedUser))
-    .catch((error) => next(error))
+  await User.findByIdAndUpdate(req.params.id, user, {
+    new: true,
+  })
+  res.json(user)
 })
 
 // Deleting a user
-router.delete('/:id', (req, res, next) => {
-  User.findByIdAndDelete(req.params.id)
-    .then(() => res.status(204).end())
-    .catch((error) => next(error))
+router.delete('/:id', async (req, res) => {
+  await User.findByIdAndDelete(req.params.id)
+  res.status(204).end()
 })
 
 module.exports = router

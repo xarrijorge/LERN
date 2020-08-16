@@ -5,26 +5,20 @@ const Report = require('../models/reports')
 
 // Getting all reports
 
-router.get('/', (req, res) => {
-  Report.find({}).then((reports) => res.json(reports))
+router.get('/', async (req, res) => {
+  const reports = await Report.find({})
+  res.json(reports)
 })
 
 // Getting a single report
 
-router.get('/:id', (req, res, next) => {
-  Report.findById(req.params.id)
-    .then((report) => {
-      if (report) {
-        res.json(report)
-      } else {
-        res.status(404).end()
-      }
-    })
-    .catch((error) => next(error))
+router.get('/:id', async (req, res) => {
+  const report = await Report.findById(req.params.id)
+  return report ? res.json(report) : res.status(404).end()
 })
 
 // Adding a report
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { body } = req
 
   // if (!body.content) {
@@ -40,29 +34,31 @@ router.post('/', (req, res) => {
     date: body.date || new Date(),
   })
 
-  report.save().then((savedReport) => res.json(savedReport))
+  const savedReport = await report.save()
+  res.json(savedReport)
 })
 
 // Updating a single report
-router.put('/:id', (req, res, next) => {
+router.put('/:id', async (req, res) => {
   const { body } = req
+  const entries = Object.keys(body)
 
-  const report = {
-    title: body.title,
-    content: body.content,
-    approve: body.approve,
-  }
-  Report.findByIdAndUpdate(req.params.id, report, { new: true })
-    .then((updatedReport) => res.json(updatedReport))
-    .catch((error) => next(error))
+  const report = await Report.findOne({ _id: req.params.id }, (docs) => docs)
+
+  entries.forEach((el) => {
+    report[el] = body[el] ?? report[el]
+  })
+
+  // await Report.save()
+  await Report.findByIdAndUpdate(req.params.id, report, { new: true })
+  res.json(report)
 })
 
 // Updating multiple reports
 
 // Deleting a single report
-router.delete('/:id', (req, res, next) => {
-  Report.findByIdAndDelete(req.params.id)
-    .then(() => res.status(204).end())
-    .catch((error) => next(error))
+router.delete('/:id', async (req, res) => {
+  await Report.findByIdAndDelete(req.params.id)
+  res.json(204).end()
 })
 module.exports = router

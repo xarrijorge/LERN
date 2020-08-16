@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const { Schema } = mongoose
 
@@ -7,6 +8,7 @@ const userSchema = new Schema({
     type: String,
     minlength: 5,
     required: true,
+    unique: true,
   },
   name: {
     type: String,
@@ -16,14 +18,17 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
-  password: {
+  passwordHash: {
     type: String,
     required: true,
     minlength: 8,
   },
   lastlogin: Date,
 })
+
+userSchema.plugin(uniqueValidator)
 
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {

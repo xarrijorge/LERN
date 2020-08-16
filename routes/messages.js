@@ -8,13 +8,14 @@ const Message = require('../models/messages')
 // Actual Routes
 // Getting all messages
 
-router.get('/', (req, res) => {
-  Message.find({}).then((messages) => res.json(messages))
+router.get('/', async (req, res) => {
+  const messages = await Message.find({})
+  res.json(messages)
 })
 
 // Adding a single message
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { body } = req
 
   const message = new Message({
@@ -22,7 +23,8 @@ router.post('/', (req, res) => {
     date: new Date(),
   })
 
-  message.save().then((savedMessage) => res.json(savedMessage))
+  await message.save()
+  res.json(message)
 })
 
 // // Getting a single message
@@ -38,8 +40,9 @@ router.post('/', (req, res) => {
 
 // Deleting a single message
 
-router.delete('/:id', (req, res) => {
-  Message.findByIdAndDelete(req.params.id).then(() => res.status(204).end())
+router.delete('/:id', async (req, res) => {
+  await Message.findByIdAndDelete(req.params.id)
+  res.status(204).end()
 })
 
 module.exports = router
