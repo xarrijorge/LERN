@@ -46,7 +46,7 @@ router.put('/:id', async (req, res) => {
   const report = await Report.findOne({ _id: req.params.id }, (docs) => docs)
 
   entries.forEach((el) => {
-    report[el] = body[el] ?? report[el]
+    report[el] = body[el] || report[el]
   })
 
   // await Report.save()
