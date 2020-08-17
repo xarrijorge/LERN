@@ -7,6 +7,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('./utils/config')
 
+const authRouter = require('./routes/auth')
 const indexRouter = require('./routes/index')
 const messagesRouter = require('./routes/messages')
 const reportsRouter = require('./routes/reports')
@@ -28,6 +29,7 @@ mongoose.connect(config.MONGODB_URI, {
 })
 
 app.use('/', indexRouter)
+app.use('/auth', authRouter)
 app.use('/messages', messagesRouter)
 app.use('/reports', reportsRouter)
 app.use('/reporters', reportersRouter)

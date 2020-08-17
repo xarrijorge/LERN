@@ -18,11 +18,12 @@ router.post('/', async (req, res) => {
   const passwordHash = await bcrypt.hash(body.password, saltRounds)
 
   const user = new User({
-    username: body.username,
+    userName: body.userName,
     name: body.name,
     email: body.email,
     passwordHash,
     lastlogin: body.date || new Date(),
+    reportCount: 0,
   })
 
   await user.save()

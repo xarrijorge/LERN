@@ -21,15 +21,13 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   const { body } = req
 
-  // if (!body.content) {
-  //   return res.status(400).json({
-  //     error: 'missing content',
-  //   })
-  // }
-
   const report = new Report({
     title: body.title,
-    content: body.content,
+    description: body.description,
+    location: body.location,
+    category: body.category,
+    subCategory: body.subCategory,
+    enumerator: body.enumerator,
     approve: body.approve || false,
     date: body.date || new Date(),
   })
