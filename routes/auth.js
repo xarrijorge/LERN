@@ -10,12 +10,13 @@ router.get('/', (req, res) => {
 })
 
 router.get('/login', (req, res) => res.send('login page'))
+
 router.post('/login', async (req, res) => {
   const { body } = req
 
-  const user = await User.findOne({ userName: body.userName }, (tname) => tname)
+  const user = await User.findOne({ username: body.username }, (name) => name)
 
-  const { userName, name } = user
+  const { username, name } = user
 
   const password = user
     ? await bcrypt.compare(body.password, user.passwordHash)
@@ -28,13 +29,16 @@ router.post('/login', async (req, res) => {
   }
 
   const tokenUser = {
-    userName,
+    username,
     id: user._id,
   }
   const token = jwt.sign(tokenUser, process.env.SECRET)
+  user.lastlogin = new Date()
+  user.save()
+
   res.status(200).send({
     token,
-    userName,
+    username,
     name,
   })
   return token

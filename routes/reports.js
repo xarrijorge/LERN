@@ -2,6 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 const Report = require('../models/reports')
+const User = require('../models/users')
 
 // Getting all reports
 
@@ -32,8 +33,13 @@ router.post('/', async (req, res) => {
     date: body.date || new Date(),
   })
 
-  const savedReport = await report.save()
-  res.json(savedReport)
+  const user = await User.findOne({ username: body.enumerator }, (doc) => doc)
+
+  await report.save()
+  user.reportCount += 1
+  await user.save()
+
+  res.json(report)
 })
 
 // Updating a single report
