@@ -16,8 +16,6 @@ router.post('/login', async (req, res) => {
 
   const user = await User.findOne({ username: body.username }, (name) => name)
 
-  const { username, name } = user
-
   const password = user
     ? await bcrypt.compare(body.password, user.passwordHash)
     : false
@@ -27,10 +25,11 @@ router.post('/login', async (req, res) => {
       error: 'Invalid username or password',
     })
   }
+  const { username, name, _id: id } = user
 
   const tokenUser = {
     username,
-    id: user._id,
+    id,
   }
   const token = jwt.sign(tokenUser, process.env.SECRET)
   user.lastlogin = new Date()

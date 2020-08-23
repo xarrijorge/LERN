@@ -27,6 +27,7 @@ mongoose.connect(config.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
+mongoose.set('useCreateIndex', true)
 
 app.use('/', indexRouter)
 app.use('/auth', authRouter)

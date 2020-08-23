@@ -1,4 +1,5 @@
 const express = require('express')
+const jwt = require('jsonwebtoken')
 
 const router = express.Router()
 const Report = require('../models/reports')
@@ -18,9 +19,25 @@ router.get('/:id', async (req, res) => {
   return report ? res.json(report) : res.status(404).end()
 })
 
+const getTokenFrom = (req) => {
+  const auth = req.get('authorization')
+  if (auth && auth.toLowerCase().startsWith('bearer ')) {
+    return auth.substring(7)
+  }
+  return null
+}
 // Adding a report
 router.post('/', async (req, res) => {
   const { body } = req
+  const token = getTokenFrom(req)
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+
+  if (!token || !decodedToken.id) {
+    return res.status(401).json({ error: 'Missing or invalid token' })
+  }
+
+  const user = await User.findById(decodedToken.id)
+  const enumerator = user.name
 
   const report = new Report({
     title: body.title,
@@ -28,18 +45,17 @@ router.post('/', async (req, res) => {
     location: body.location,
     category: body.category,
     subCategory: body.subCategory,
-    enumerator: body.enumerator,
+    enumerator,
     approve: body.approve || false,
     date: body.date || new Date(),
   })
-
-  const user = await User.findOne({ username: body.enumerator }, (doc) => doc)
 
   await report.save()
   user.reportCount += 1
   await user.save()
 
   res.json(report)
+  return report
 })
 
 // Updating a single report

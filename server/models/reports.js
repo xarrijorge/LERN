@@ -29,10 +29,7 @@ const reportSchema = new Schema({
     type: Date,
     required: true,
   },
-  enumerator: {
-    type: String,
-    required: true,
-  },
+  enumerator: String,
   approve: Boolean,
 })
 
