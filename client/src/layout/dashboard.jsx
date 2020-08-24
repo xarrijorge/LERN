@@ -9,10 +9,10 @@ const Dashboard = () => {
       <BackNav />
       <Router>
         <Dashboard
-          messages={reports}
+          reports={reports}
           details={details}
           displayContents={displayContents}
-          path="/*"
+          path='/*'
         />
       </Router>
     </Fragment>

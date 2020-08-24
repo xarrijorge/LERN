@@ -1,13 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import reportService from './services/reports'
 import messageService from './services/messages'
-import './App.css'
+import './App.scss'
 
-import { Router, navigate } from '@reach/router'
-import FilterNav from './components/filter'
+import { navigate } from '@reach/router'
 import FrontEnd from './layout/frontend'
-import Messages from './components/Messages'
-import Create from './components/Create'
 
 let content = ''
 let editorMessage = ''
@@ -15,46 +12,44 @@ let editorMessage = ''
 function App() {
   const [messages, setMessages] = useState([])
   const [reports, setReports] = useState([])
-  const [details, setDetails] = useState({})
+  const [details, setDetails] = useState('this means war!')
   const [editorText, setEditorText] = useState('')
 
-  const LoginUser = event => {
-    event.preventDefault()
-    alert('testing')
-  }
-
-  const displayContents = index => {
+  const displayContents = (index) => {
     content = reports[index]
-    editorMessage = messages[index]
   }
 
-  const createReport = index => {
+  const createReport = (index) => {
     editorMessage = messages[index]
+    setEditorText(editorMessage)
     navigate('/create')
   }
 
   useEffect(() => {
-    reportService.getAll().then(allReports => {
+    reportService.getAll().then((allReports) => {
       setReports(allReports.data)
-      setDetails(content)
+      setDetails({ ...content })
     })
   }, [reports])
 
-  // useEffect(() => {
-  //   messageService.getAll().then(allMessages => {
-  //     console.log('messages are', allMessages)
-  //     setMessages(allMessages)
-  //     setEditorText(editorMessage)
-  //   })
-  // }, [messages])
+  useEffect(() => {
+    messageService.getAll().then(
+      (allMessages) => {
+        setMessages(allMessages.data)
+      },
+      [0]
+    )
+  })
 
   return (
     <Fragment>
       <FrontEnd
         details={details}
         reports={reports}
+        messages={messages}
         displayContents={displayContents}
-        LoginUser={LoginUser}
+        createReport={createReport}
+        reportMessage={editorText}
       />
     </Fragment>
   )

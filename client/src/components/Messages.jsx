@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { Layout, Card, Tag, Button } from 'antd'
 
-const Message = props => {
+const Message = (props) => {
   return (
-    <div className="singleMessage">
-      <p>
-        {props.message.message}{' '}
-        <span onClick={props.handleClick}>create Report</span>
-      </p>
-    </div>
+    <Layout>
+      <Card hoverable className='singleMessage'>
+        <p>{props.message.content} </p>
+        <Button onClick={props.handleClick}>create Report</Button>
+      </Card>
+    </Layout>
   )
 }
-const Messages = props => {
+const Messages = (props) => {
   const data = props.messages.map((message, index) => (
     <Message
       key={index}
@@ -18,6 +19,6 @@ const Messages = props => {
       handleClick={props.handleClick.bind(this, index)}
     />
   ))
-  return <div>{data}</div>
+  return <div className='messagesBox'>{data}</div>
 }
 export default Messages

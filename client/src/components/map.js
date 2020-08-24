@@ -5,7 +5,7 @@ import useSuperCluster from 'use-supercluster'
 import { Row, Col } from 'antd'
 import Axios from 'axios'
 
-const fetcher = async url => {
+const fetcher = async (url) => {
   const response = await Axios.get(url)
   return response.data.data
 }
@@ -22,20 +22,20 @@ export default function Map() {
   const { data } = useSwr(url, fetcher)
 
   const reports = data ? data : []
-  const points = reports.map(report => ({
+  const points = reports.map((report) => ({
     type: 'Feature',
     properties: {
       cluster: false,
       reportId: report['#'],
-      category: report.CATEGORY
+      category: report.CATEGORY,
     },
     geometry: {
       type: 'Point',
       coordinates: [
         parseFloat(report.location.lon),
-        parseFloat(report.location.lat)
-      ]
-    }
+        parseFloat(report.location.lat),
+      ],
+    },
   }))
 
   //get clusters
@@ -43,12 +43,12 @@ export default function Map() {
     points,
     bounds,
     zoom,
-    options: { radius: 75, maxZoom: 20 }
+    options: { radius: 75, maxZoom: 20 },
   })
 
   //render map
   return (
-    <Row style={{ height: '70vh' }}>
+    <Row style={{ height: '90vh' }}>
       <Col span={24}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_MAP_API_KEY }}
@@ -65,27 +65,27 @@ export default function Map() {
               bounds.nw.lng,
               bounds.se.lat,
               bounds.se.lng,
-              bounds.nw.lat
+              bounds.nw.lat,
             ])
           }}
         >
           {/* Markers */}
-          {clusters.map(cluster => {
+          {clusters.map((cluster) => {
             const [lon, lat] = cluster.geometry.coordinates
             const {
               cluster: isCluster,
-              point_count: pointCount
+              point_count: pointCount,
             } = cluster.properties
 
             if (isCluster) {
               return (
                 <Marker key={cluster.id} lat={lat} lng={lon}>
                   <div
-                    className="clusterMarker"
+                    className='clusterMarker'
                     style={{
                       width: `${10 + (pointCount / points.length) * 20}px`,
                       height: `${10 + (pointCount / points.length) * 20}px`,
-                      borderWidth: `${(pointCount / points.length) * 5}px`
+                      borderWidth: `${(pointCount / points.length) * 5}px`,
                     }}
                     onClick={() => {
                       const expansionZoom = Math.min(
@@ -104,7 +104,7 @@ export default function Map() {
 
             return (
               <Marker key={cluster.properties.reportId} lat={lat} lng={lon}>
-                <i className="material-icons mapMarker">place</i>
+                <i className='material-icons mapMarker'>place</i>
               </Marker>
             )
           })}

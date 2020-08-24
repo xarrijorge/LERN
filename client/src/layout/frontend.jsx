@@ -2,8 +2,10 @@ import React, { Fragment } from 'react'
 import { Router } from '@reach/router'
 
 import Reports from '../components/Reports'
+import Messages from '../components/Messages'
 import Details from '../components/Details'
 import Map from '../components/map'
+import CreateReport from '../components/Create'
 import Data from '../components/data'
 import Login from '../components/login'
 import { Layout, Row, Col } from 'antd'
@@ -12,50 +14,68 @@ import FilterForm from '../components/filter'
 
 const { Header, Sider, Content } = Layout
 
-const MockReport = ({ messages, details, displayContents }) => {
+const MockReport = ({ rmessages, details, displayContents }) => {
   return (
-    <Row>
-      <Col>
-        <Reports handleDisplay={displayContents} messages={messages} />
-      </Col>
-      <Col span={12}>
-        <Details details={details} />
-      </Col>
-    </Row>
+    <div className='reportDisplay'>
+      <Reports handleDisplay={displayContents} messages={rmessages} />
+      <Details details={details} />
+    </div>
   )
 }
 
-const Dashboard = ({ messages, details, displayContents }) => {
+const Dashboard = ({
+  mcontent,
+  rmessages,
+  details,
+  displayContents,
+  createReport,
+  reportMessage,
+}) => {
   return (
-    <Layout className="frontLayout">
+    <div className='frontLayout'>
       <FilterForm />
-      <Content className="frontContent">
-        <Row gutter={16}>
-          <Router>
-            <MockReport
-              path="/*"
-              messages={messages}
-              details={details}
-              displayContents={displayContents}
-            />
-            <Map path="map" />
-            <Data path="stats" />
-            <Login path="login" />
-          </Router>
-        </Row>
+      <Content className='frontContent'>
+        <Router>
+          <MockReport
+            path='/*'
+            rmessages={rmessages}
+            details={details}
+            displayContents={displayContents}
+          />
+          <Map path='map' />
+          <Messages
+            path='messages'
+            messages={mcontent}
+            handleClick={createReport}
+          />
+          <Data path='stats' />
+          <Login path='login' />
+          <CreateReport path='create' reportMessage={reportMessage} />
+        </Router>
       </Content>
-    </Layout>
+    </div>
   )
 }
 
-const FrontEnd = ({ details, reports, displayContents, LoginUser }) => {
+const FrontEnd = ({
+  details,
+  messages,
+  reports,
+  displayContents,
+  createReport,
+  reportMessage,
+  LoginUser,
+}) => {
   return (
     <Layout>
       <FrontNav />
       <Dashboard
-        messages={reports}
+        rmessages={reports}
+        mcontent={messages}
         details={details}
         displayContents={displayContents}
+        createReport={createReport}
+        reportMessage={reportMessage}
       />
     </Layout>
   )
