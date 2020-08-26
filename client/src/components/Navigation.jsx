@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Layout, Menu } from 'antd'
 import {
   ProfileOutlined,
+  MessageOutlined,
   AreaChartOutlined,
   EnvironmentOutlined,
   LoginOutlined,
@@ -42,7 +43,7 @@ export default function FrontNav() {
             <Link to='map'>Map</Link>
           </MenuItem>
           <MenuItem>
-            <ProfileOutlined
+            <MessageOutlined
               className='menu-icon'
               style={{ fontSize: '24px' }}
             />

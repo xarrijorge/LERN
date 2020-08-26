@@ -17,6 +17,7 @@ function App() {
 
   const displayContents = (index) => {
     content = reports[index]
+    setDetails(content)
   }
 
   const createReport = (index) => {
@@ -28,18 +29,14 @@ function App() {
   useEffect(() => {
     reportService.getAll().then((allReports) => {
       setReports(allReports.data)
-      setDetails({ ...content })
     })
-  }, [reports])
+  }, [])
 
   useEffect(() => {
-    messageService.getAll().then(
-      (allMessages) => {
-        setMessages(allMessages.data)
-      },
-      [0]
-    )
-  })
+    messageService.getAll().then((allMessages) => {
+      setMessages(allMessages.data)
+    })
+  }, [])
 
   return (
     <Fragment>

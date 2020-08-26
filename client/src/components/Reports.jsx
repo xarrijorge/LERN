@@ -4,7 +4,6 @@ import { categories } from '../utils/category'
 
 const Report = ({ message, handleClick }) => {
   const options = {
-    weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -21,6 +20,7 @@ const Report = ({ message, handleClick }) => {
         onClick={handleClick}
         hoverable
         style={{ margin: '5px 0' }}
+        className='card'
       >
         <Tag color='#108ee9' className='tag'>
           {message.location.place}
