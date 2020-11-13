@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+// const setAsync = promisify(client.set).bind(client)
+
 // const baseUrl = 'https://pbo-lern.herokuapp.com/reports'
 const baseUrl = 'http://localhost:3001/reports'
 
@@ -21,8 +23,8 @@ const update = async (id, newObject) => {
   return request
 }
 
-const deleteOne = (id) => {
-  axios.delete(`${baseUrl}/${id}`)
+const deleteOne = async (id) => {
+  await axios.delete(`${baseUrl}/${id}`)
 }
 
 export default { getAll, create, update, deleteOne }

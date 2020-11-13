@@ -10,6 +10,7 @@ import {
   EnvironmentOutlined,
   LoginOutlined,
 } from '@ant-design/icons'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import MenuItem from 'antd/lib/menu/MenuItem'
 
@@ -18,6 +19,7 @@ const { SubMenu } = Menu
 
 export default function FrontNav() {
   const [state, setState] = useState({ collapsed: false })
+  const { loginWithRedirect } = useAuth0()
 
   const onCollapse = (collapsed) => {
     setState({ collapsed })
@@ -64,9 +66,9 @@ export default function FrontNav() {
             />
             <Link to='stats'>Data</Link>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={() => loginWithRedirect()}>
             <LoginOutlined className='menu-icon' style={{ fontSize: '24px' }} />
-            <Link to='login'>Login</Link>
+            Login
           </MenuItem>
         </Menu>
       </Sider>

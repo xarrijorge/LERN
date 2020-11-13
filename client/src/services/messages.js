@@ -13,8 +13,8 @@ const create = async () => {
   return request
 }
 
-const deleteOne = (id) => {
-  axios.delete(`${baseUrl}/${id}`)
+const deleteOne = async (id) => {
+  await axios.delete(`${baseUrl}/${id}`)
 }
 
 export default { getAll, create, deleteOne }

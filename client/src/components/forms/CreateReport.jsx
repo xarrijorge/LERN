@@ -1,5 +1,5 @@
 import React from 'react'
-import { counties, categories } from '../utils/category'
+import { counties, categories } from '../../utils/category'
 
 const CreateReport = (props) => {
   const countyData = counties.map((county, index) => (

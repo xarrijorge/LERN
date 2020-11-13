@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Card, Tag } from 'antd'
 import { categories } from '../utils/category'
 

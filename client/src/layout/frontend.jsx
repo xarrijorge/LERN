@@ -5,9 +5,8 @@ import Reports from '../components/Reports'
 import Messages from '../components/Messages'
 import Details from '../components/Details'
 import Map from '../components/map'
-import CreateReport from '../components/Create'
+import CreateReport from '../components/forms/CreateReport'
 import Data from '../components/data'
-import Login from '../components/login'
 import { Layout, Row, Col } from 'antd'
 import FrontNav from '../components/Navigation'
 import FilterForm from '../components/filter'
@@ -49,7 +48,6 @@ const Dashboard = ({
             handleClick={createReport}
           />
           <Data path='stats' />
-          <Login path='login' />
           <CreateReport path='create' reportMessage={reportMessage} />
         </Router>
       </Content>
