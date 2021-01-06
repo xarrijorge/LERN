@@ -9,7 +9,7 @@
     "@testing-library/react": "^10.4.9",
     "@testing-library/user-event": "^12.1.2",
     "antd": "^4.5.4",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "google-map-react": "^2.0.8",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
